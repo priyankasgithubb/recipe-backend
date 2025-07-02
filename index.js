@@ -1,11 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
 app.use(cors());
 
-const PORT = 3001;
-const API_KEY = 'ed82bc9c2517494abef9c329e52a8de4';
+const API_KEY = process.env.SPOONACULAR_API_KEY;
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Recipe API!');
@@ -33,6 +33,8 @@ app.get('/recipes', async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log("Server is running");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
